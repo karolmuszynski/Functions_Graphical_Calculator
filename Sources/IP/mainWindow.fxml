@@ -1,0 +1,222 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.net.*?>
+<?import javafx.scene.chart.*?>
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.chart.LineChart?>
+<?import javafx.scene.chart.NumberAxis?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.Font?>
+<?import java.net.URL?>
+
+<BorderPane fx:id="borderPane" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="individual.Controller">
+    <stylesheets>
+        <URL value="@main.css" />
+    </stylesheets>
+    <bottom>
+        <AnchorPane prefHeight="28.0" prefWidth="800.0" BorderPane.alignment="CENTER">
+            <children>
+                <Button fx:id="saveButton" layoutX="504.0" layoutY="2.0" mnemonicParsing="false" onAction="#saveButtonHandler" prefHeight="25.0" prefWidth="140.0" style="-fx-background-color: white; -fx-border-color: black;" text="Save" AnchorPane.bottomAnchor="15.0" AnchorPane.rightAnchor="13.0" />
+                <Button fx:id="clearButton" cancelButton="true" layoutX="391.0" mnemonicParsing="false" onAction="#clearButtonHandler" prefHeight="25.0" prefWidth="140.0" style="-fx-background-color: white; -fx-border-color: black;" text="Clear" AnchorPane.bottomAnchor="15.0" AnchorPane.rightAnchor="170.0" />
+                <Label fx:id="descriptionLabel" layoutX="27.0048828125" layoutY="11.5" text="Change description to:" visible="false" AnchorPane.leftAnchor="28.0" AnchorPane.topAnchor="7.0" />
+                <TextField fx:id="descriptionTextField" layoutX="154.0" layoutY="6.0" prefHeight="29.0" prefWidth="120.0" visible="false" AnchorPane.leftAnchor="155.0" AnchorPane.topAnchor="0.0" />
+            </children>
+        </AnchorPane>
+    </bottom>
+    <left>
+        <Pane BorderPane.alignment="CENTER" />
+    </left>
+   <top>
+        <AnchorPane fx:id="toSnapshot" prefHeight="275.0" prefWidth="612.0" BorderPane.alignment="CENTER">
+            <children>
+             <LineChart fx:id="coordinateLineChart" createSymbols="false" layoutY="14.0" prefHeight="286.0" prefWidth="707.0" titleSide="LEFT" AnchorPane.bottomAnchor="-25.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="93.0" AnchorPane.topAnchor="14.0">
+                 <xAxis>
+                     <NumberAxis label="x" onMouseClicked="#onClickAxisX" prefHeight="50.0" prefWidth="430.0" side="BOTTOM" style="-fx-tick-label-font-size: 10;" fx:id="xNumberAxis">
+                         <tickLabelFont>
+                             <Font name="System Bold" size="8.0" />
+                         </tickLabelFont>
+                     </NumberAxis>
+                 </xAxis>
+                 <yAxis>
+                     <NumberAxis fx:id="yNumberAxis" label="f(x)" onMouseClicked="#onClickAxisY" side="LEFT" />
+                 </yAxis>
+             </LineChart>
+             <VBox fx:id="legendVBox" fillWidth="false" layoutX="688.0" layoutY="14.0" prefHeight="90.0" prefWidth="79.0" spacing="5.0" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="14.0">
+                 <opaqueInsets>
+                     <Insets />
+                 </opaqueInsets>
+                 <padding>
+                     <Insets right="13.0" top="25.0" />
+                 </padding>
+             </VBox>
+            </children>
+        </AnchorPane>
+   </top>
+   <center>
+        <AnchorPane prefHeight="203.0" prefWidth="800.0" BorderPane.alignment="CENTER">
+            <children>
+                <Label layoutX="30.0" layoutY="62.0" text="DOMAIN" AnchorPane.topAnchor="62.0" />
+                <TextField fx:id="domainTextField" layoutX="103.0" layoutY="57.0" onKeyReleased="#domainTextFieldOnChange" prefHeight="25.0" prefWidth="120.0" promptText="&lt;-1,37&gt;" style="-fx-background-color: white; -fx-border-color: black;" AnchorPane.leftAnchor="103.0" AnchorPane.topAnchor="57.0" />
+                <Label layoutX="17.0" layoutY="92.0" text="CODOMAIN" AnchorPane.topAnchor="92.0" />
+                <TextField fx:id="codomainTextField" layoutX="103.0" layoutY="87.0" onKeyReleased="#codomainTextFieldOnChange" prefHeight="25.0" prefWidth="120.0" promptText="(-20,13)" style="-fx-background-color: white; -fx-border-color: black;" AnchorPane.leftAnchor="103.0" AnchorPane.topAnchor="87.0" />
+                <TextField fx:id="functionTextField" layoutX="15.0" layoutY="192.0" prefHeight="25.0" prefWidth="559.0" promptText="For example sinx(x)+cos(x)" style="-fx-background-color: white; -fx-border-color: black;" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="226.0" />
+                <Label layoutX="22.0" layoutY="152.0" text="FORMULA" />
+                <Button fx:id="drawButton" defaultButton="true" layoutX="590.0" layoutY="192.0" mnemonicParsing="false" onAction="#drawButtonHandler" prefHeight="25.0" prefWidth="120.0" style="-fx-background-color: black;" text="CALCULATE" textFill="WHITE" AnchorPane.rightAnchor="90.0" />
+                <ColorPicker fx:id="colorPicker" layoutX="665.0" layoutY="148.0" prefHeight="25.0" prefWidth="120.0" style="-fx-background-color: white; -fx-border-color: black;" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="148.0" />
+                <ComboBox fx:id="lineStyleComboBox" layoutX="274.0" layoutY="148.0" prefHeight="25.0" prefWidth="120.0" style="-fx-background-color: white; -fx-border-color: black;" AnchorPane.rightAnchor="406.0" AnchorPane.topAnchor="148.0" />
+                <Label layoutX="232.0" layoutY="151.0" text="STYLE" AnchorPane.rightAnchor="536.0" AnchorPane.topAnchor="151.0" />
+                <Label layoutX="611.0" layoutY="151.0" text="COLOR" AnchorPane.rightAnchor="150.0" AnchorPane.topAnchor="151.0" />
+                <Pane fx:id="numericPane" layoutX="16.0" layoutY="112.0" prefHeight="0.0" prefWidth="496.0" style="-fx-background-color: white;" visible="true" AnchorPane.leftAnchor="16.0" AnchorPane.rightAnchor="288.0" AnchorPane.topAnchor="112.0" />
+                <Label layoutX="400.0" layoutY="152.0" text="THICKNESS" AnchorPane.rightAnchor="339.0" AnchorPane.topAnchor="152.0" />
+                <ComboBox fx:id="lineThiknessComboBox" layoutX="477.0" layoutY="148.0" prefHeight="25.0" prefWidth="120.0" style="-fx-background-color: white; -fx-border-color: black;" AnchorPane.rightAnchor="203.0" AnchorPane.topAnchor="148.0" />
+                <Button id="textSmaller" layoutX="742.0" layoutY="10.0" mnemonicParsing="false" onAction="#makeTextSmaller" prefHeight="25.0" prefWidth="20.0" style="-fx-background-color: white;" visible="false" AnchorPane.rightAnchor="38.0" AnchorPane.topAnchor="10.0">
+               <font>
+                  <Font name="Calibri" size="12.0" />
+               </font></Button>
+                <Button id="textBiger" layoutX="756.0" layoutY="9.0" mnemonicParsing="false" onAction="#makeTextBigger" prefHeight="25.0" prefWidth="25.0" visible="false" AnchorPane.rightAnchor="13.0" AnchorPane.topAnchor="10.0" />
+                    <Button focusTraversable="false" layoutX="264.0" layoutY="88.0" mnemonicParsing="false" onAction="#nuberic_1" prefHeight="25.0" prefWidth="25.0" style="-fx-background-color: white;" styleClass="numeric" text="1" textAlignment="CENTER" AnchorPane.leftAnchor="264.0" AnchorPane.topAnchor="88.0">
+               <font>
+                  <Font name="Calibri" size="12.0" />
+               </font></Button>
+                    <Button focusTraversable="false" layoutX="294.0" layoutY="88.0" mnemonicParsing="false" onAction="#nuberic_2" prefHeight="25.0" prefWidth="25.0" style="-fx-background-color: white;" styleClass="numeric" text="2" textAlignment="CENTER" AnchorPane.leftAnchor="294.0" AnchorPane.topAnchor="88.0">
+               <font>
+                  <Font name="Calibri" size="12.0" />
+               </font></Button>
+                    <Button focusTraversable="false" layoutX="324.0" layoutY="88.0" mnemonicParsing="false" onAction="#nuberic_3" prefHeight="25.0" prefWidth="25.0" style="-fx-background-color: white;" styleClass="numeric" text="3" textAlignment="CENTER" AnchorPane.leftAnchor="324.0" AnchorPane.topAnchor="88.0">
+               <font>
+                  <Font name="Calibri" size="12.0" />
+               </font></Button>
+                    <Button focusTraversable="false" layoutX="264.0" layoutY="58.0" mnemonicParsing="false" onAction="#nuberic_4" prefHeight="25.0" prefWidth="25.0" style="-fx-background-color: white;" styleClass="numeric" text="4" textAlignment="CENTER" AnchorPane.leftAnchor="264.0" AnchorPane.topAnchor="58.0">
+               <font>
+                  <Font name="Calibri" size="12.0" />
+               </font></Button>
+                    <Button focusTraversable="false" layoutX="294.0" layoutY="58.0" mnemonicParsing="false" onAction="#nuberic_5" prefHeight="25.0" prefWidth="25.0" style="-fx-background-color: white;" styleClass="numeric" text="5" textAlignment="CENTER" AnchorPane.leftAnchor="294.0" AnchorPane.topAnchor="58.0">
+               <font>
+                  <Font name="Calibri" size="12.0" />
+               </font></Button>
+                    <Button focusTraversable="false" layoutX="324.0" layoutY="58.0" mnemonicParsing="false" onAction="#nuberic_6" prefHeight="25.0" prefWidth="25.0" style="-fx-background-color: white;" styleClass="numeric" text="6" textAlignment="CENTER" AnchorPane.leftAnchor="324.0" AnchorPane.topAnchor="58.0">
+               <font>
+                  <Font name="Calibri" size="12.0" />
+               </font></Button>
+                    <Button focusTraversable="false" layoutX="264.0" layoutY="28.0" mnemonicParsing="false" onAction="#nuberic_7" prefHeight="25.0" prefWidth="25.0" style="-fx-background-color: white;" styleClass="numeric" text="7" textAlignment="CENTER" AnchorPane.leftAnchor="264.0" AnchorPane.topAnchor="28.0">
+               <font>
+                  <Font name="Calibri" size="12.0" />
+               </font></Button>
+                    <Button focusTraversable="false" layoutX="294.0" layoutY="28.0" mnemonicParsing="false" onAction="#nuberic_8" prefHeight="25.0" prefWidth="25.0" style="-fx-background-color: white;" styleClass="numeric" text="8" textAlignment="CENTER" AnchorPane.leftAnchor="294.0" AnchorPane.topAnchor="28.0">
+               <font>
+                  <Font name="Calibri" size="12.0" />
+               </font></Button>
+                    <Button focusTraversable="false" layoutX="324.0" layoutY="28.0" mnemonicParsing="false" onAction="#nuberic_9" prefHeight="25.0" prefWidth="25.0" style="-fx-background-color: white;" styleClass="numeric" text="9" textAlignment="CENTER" AnchorPane.leftAnchor="324.0" AnchorPane.topAnchor="28.0">
+               <font>
+                  <Font name="Calibri" size="12.0" />
+               </font></Button>
+                    <Button focusTraversable="false" layoutX="373.0" layoutY="88.0" mnemonicParsing="false" onAction="#nuberic_0" prefHeight="25.0" prefWidth="55.0" style="-fx-background-color: white;" styleClass="numeric" text="0" textAlignment="CENTER" AnchorPane.leftAnchor="373.0" AnchorPane.topAnchor="88.0">
+               <font>
+                  <Font name="Calibri" size="12.0" />
+               </font></Button>
+                    <Button focusTraversable="false" layoutX="482.0" layoutY="28.0" mnemonicParsing="false" onAction="#numeric_sin" prefHeight="25.0" prefWidth="50.0" style="-fx-background-color: white;" styleClass="numeric" text="sin(x)" textAlignment="CENTER" AnchorPane.leftAnchor="482.0" AnchorPane.topAnchor="28.0">
+               <font>
+                  <Font name="Calibri" size="12.0" />
+               </font></Button>
+                    <Button focusTraversable="false" layoutX="537.0" layoutY="28.0" mnemonicParsing="false" onAction="#numeric_cos" prefHeight="25.0" prefWidth="50.0" style="-fx-background-color: white;" styleClass="numeric" text="cos(x)" textAlignment="CENTER" AnchorPane.leftAnchor="537.0" AnchorPane.topAnchor="28.0">
+               <font>
+                  <Font name="Calibri" size="12.0" />
+               </font></Button>
+                    <Button focusTraversable="false" layoutX="482.0" layoutY="58.0" mnemonicParsing="false" onAction="#numeric_tg" prefHeight="25.0" prefWidth="50.0" style="-fx-background-color: white;" styleClass="numeric" text="tg(x)" textAlignment="CENTER" AnchorPane.leftAnchor="482.0" AnchorPane.topAnchor="58.0">
+               <font>
+                  <Font name="Calibri" size="12.0" />
+               </font></Button>
+                    <Button focusTraversable="false" layoutX="537.0" layoutY="58.0" mnemonicParsing="false" onAction="#numeric_ctg" prefHeight="25.0" prefWidth="50.0" style="-fx-background-color: white;" styleClass="numeric" text="atg(x)" textAlignment="CENTER" AnchorPane.leftAnchor="537.0" AnchorPane.topAnchor="58.0">
+               <font>
+                  <Font name="Calibri" size="12.0" />
+               </font></Button>
+                    <Button focusTraversable="false" layoutX="373.0" layoutY="28.0" mnemonicParsing="false" onAction="#nuberic_mul" prefHeight="25.0" prefWidth="25.0" style="-fx-background-color: white;" styleClass="numeric" text="*" textAlignment="CENTER" AnchorPane.leftAnchor="373.0" AnchorPane.topAnchor="28.0">
+               <font>
+                  <Font name="Calibri" size="12.0" />
+               </font></Button>
+                    <Button focusTraversable="false" layoutX="373.0" layoutY="60.0" mnemonicParsing="false" onAction="#nuberic_plus" prefHeight="25.0" prefWidth="25.0" style="-fx-background-color: white;" styleClass="numeric" text="+" textAlignment="CENTER" AnchorPane.leftAnchor="373.0" AnchorPane.topAnchor="60.0">
+               <font>
+                  <Font name="Calibri" size="12.0" />
+               </font></Button>
+                    <Button focusTraversable="false" layoutX="403.0" layoutY="60.0" mnemonicParsing="false" onAction="#nuberic_minus" prefHeight="25.0" prefWidth="25.0" style="-fx-background-color: white;" styleClass="numeric" text="-" textAlignment="CENTER" AnchorPane.leftAnchor="403.0" AnchorPane.topAnchor="60.0">
+               <font>
+                  <Font name="Calibri" size="12.0" />
+               </font></Button>
+                    <Button focusTraversable="false" layoutX="403.0" layoutY="28.0" mnemonicParsing="false" onAction="#nuberic_div" prefHeight="25.0" prefWidth="25.0" style="-fx-background-color: white;" styleClass="numeric" text="/" textAlignment="CENTER" AnchorPane.leftAnchor="403.0" AnchorPane.topAnchor="28.0">
+               <font>
+                  <Font name="Calibri" size="12.0" />
+               </font></Button>
+                    <Button focusTraversable="false" layoutX="482.0" layoutY="88.0" mnemonicParsing="false" onAction="#numeric_htg" prefHeight="25.0" prefWidth="50.0" style="-fx-background-color: white;" styleClass="numeric" text="tgh(x)" textAlignment="CENTER" AnchorPane.leftAnchor="482.0" AnchorPane.topAnchor="88.0">
+               <font>
+                  <Font name="Calibri" size="12.0" />
+               </font></Button>
+                    <Button focusTraversable="false" layoutX="537.0" layoutY="88.0" mnemonicParsing="false" onAction="#numeric_hsin" prefHeight="25.0" prefWidth="50.0" style="-fx-background-color: white;" styleClass="numeric" text="sinh(x)" textAlignment="CENTER" AnchorPane.leftAnchor="537.0" AnchorPane.topAnchor="88.0">
+               <font>
+                  <Font name="Calibri" size="12.0" />
+               </font></Button>
+                    <Button focusTraversable="false" layoutX="434.0" layoutY="28.0" mnemonicParsing="false" onAction="#numeric_x" prefHeight="25.0" prefWidth="25.0" style="-fx-background-color: white;" styleClass="numeric" text="x" textAlignment="CENTER" AnchorPane.leftAnchor="434.0" AnchorPane.topAnchor="28.0">
+               <font>
+                  <Font name="Calibri" size="12.0" />
+               </font></Button>
+                    <Button focusTraversable="false" layoutX="434.0" layoutY="58.0" mnemonicParsing="false" onAction="#numeric_pow" prefHeight="25.0" prefWidth="25.0" style="-fx-background-color: white;" styleClass="numeric" text="^" textAlignment="CENTER" AnchorPane.leftAnchor="434.0" AnchorPane.topAnchor="58.0">
+               <font>
+                  <Font name="Calibri" size="12.0" />
+               </font></Button>
+                    <Button id="sqrt" focusTraversable="false" layoutX="434.0" layoutY="88.0" mnemonicParsing="false" onAction="#numeric_sqrt" prefHeight="25.0" prefWidth="25.0" style="-fx-background-color: white;" styleClass="numeric" textAlignment="CENTER" AnchorPane.leftAnchor="434.0" AnchorPane.topAnchor="88.0">
+                        <effect>
+                            <DropShadow />
+                        </effect>
+               <font>
+                  <Font name="Calibri" size="12.0" />
+               </font>
+                    </Button>
+                    <Button focusTraversable="false" layoutX="610.0" layoutY="28.0" mnemonicParsing="false" onAction="#numeric_min" prefHeight="25.0" prefWidth="50.0" style="-fx-background-color: white;" styleClass="numeric" text="min" textAlignment="CENTER" AnchorPane.leftAnchor="610.0" AnchorPane.topAnchor="28.0">
+               <font>
+                  <Font name="Calibri" size="12.0" />
+               </font></Button>
+                    <Button focusTraversable="false" layoutX="610.0" layoutY="58.0" mnemonicParsing="false" onAction="#numeric_max" prefHeight="25.0" prefWidth="50.0" style="-fx-background-color: white;" styleClass="numeric" text="max" textAlignment="CENTER" AnchorPane.leftAnchor="610.0" AnchorPane.topAnchor="58.0">
+               <font>
+                  <Font name="Calibri" size="12.0" />
+               </font></Button>
+                    <Button focusTraversable="false" layoutX="664.0" layoutY="28.0" mnemonicParsing="false" onAction="#numeric_floor" prefHeight="25.0" prefWidth="50.0" style="-fx-background-color: white;" styleClass="numeric" text="floor" textAlignment="CENTER" AnchorPane.leftAnchor="664.0" AnchorPane.topAnchor="28.0">
+               <font>
+                  <Font name="Calibri" size="12.0" />
+               </font></Button>
+                    <Button focusTraversable="false" layoutX="664.0" layoutY="58.0" mnemonicParsing="false" onAction="#numeric_cell" prefHeight="25.0" prefWidth="50.0" style="-fx-background-color: white;" styleClass="numeric" text="ceil" textAlignment="CENTER" AnchorPane.leftAnchor="664.0" AnchorPane.topAnchor="58.0">
+               <font>
+                  <Font name="Calibri" size="12.0" />
+               </font></Button>
+                    <Button id="pi" focusTraversable="false" layoutX="734.0" layoutY="28.0" mnemonicParsing="false" onAction="#numeric_pi" prefHeight="25.0" prefWidth="25.0" style="-fx-background-color: white;" styleClass="numeric" textAlignment="CENTER" AnchorPane.leftAnchor="734.0" AnchorPane.topAnchor="28.0">
+                        <effect>
+                            <DropShadow />
+                        </effect>
+               <font>
+                  <Font name="Calibri" size="12.0" />
+               </font>
+                    </Button>
+                    <Button focusTraversable="false" layoutX="734.0" layoutY="58.0" mnemonicParsing="false" onAction="#numeric_e" prefHeight="25.0" prefWidth="25.0" style="-fx-background-color: white;" styleClass="numeric" text="e" textAlignment="CENTER">
+                        <effect>
+                            <DropShadow />
+                        </effect>
+               <font>
+                  <Font name="Calibri" size="12.0" />
+               </font>
+                    </Button>
+                    <Button focusTraversable="false" layoutX="610.0" layoutY="88.0" mnemonicParsing="false" onAction="#numeric_log" prefHeight="25.0" prefWidth="50.0" style="-fx-background-color: white;" styleClass="numeric" text="log" textAlignment="CENTER">
+               <font>
+                  <Font name="Calibri" size="12.0" />
+               </font></Button>
+                    <Button focusTraversable="false" layoutX="664.0" layoutY="88.0" mnemonicParsing="false" onAction="#numeric_exp" prefHeight="25.0" prefWidth="50.0" style="-fx-background-color: white;" styleClass="numeric" text="exp" textAlignment="CENTER">
+               <font>
+                  <Font name="Calibri" size="12.0" />
+               </font></Button>
+            <CheckBox fx:id="modificationModeCheckBox" disable="true" layoutX="102.0" layoutY="20.0" mnemonicParsing="false" text="MODIFY" />
+            </children>
+        </AnchorPane>
+   </center>
+</BorderPane>

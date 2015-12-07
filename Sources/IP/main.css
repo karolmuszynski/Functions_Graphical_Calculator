@@ -1,0 +1,47 @@
+
+.chart-series-line {
+    -fx-stroke-width: 2px;
+
+}
+
+.chart-legend-item-symbol{
+   -fx-background-radius: 0;
+}
+
+.chart-legend-item{
+    -fx-margin: 10 0 0 0 ;
+    -fx-text-fill: #191970;
+}
+
+.chart-plot-background {
+    -fx-background-color: white;
+}
+
+.numeric {
+    -fx-background-color: #e2ecfe;
+    -fx-background-radius: null;
+    -fx-padding: 2 2 2 2;
+    -fx-text-fill: black;
+    -fx-font-size: 14px;
+    -fx-effect: dropshadow( gaussian , rgba(0,0,0,0.75) , 4,0,0,1 );
+    }
+
+.keyboardButton {
+    -fx-graphic: url("../../../../src/img/keyboard.png");
+
+}
+
+#sqrt {
+    -fx-graphic: url("../../../../src/img/keyboard/square_root.png");
+}
+
+#pi {
+    -fx-graphic: url("../../../../src/img/keyboard/greek_pi.gif");
+}
+
+
+.axis-label {
+
+  -fx-font-size: 16px;
+  -fx-font-weight: bold;
+}

@@ -1,0 +1,4 @@
+1.Please copy "Exe" folder to your Desktop.
+2.Please select RUN_ON_WIN_x64 or RUN_ON_WIN_x86 depedning on your windows version.
+
+*x64 for 64 bit , x86 for 32bit Windows system.

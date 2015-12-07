@@ -1,0 +1,4 @@
+Manifest-Version: 1.0
+Class-Path: exp4j-0.3.11.jar controlsfx-8.0.5.jar
+Main-Class: individual.Main
+
